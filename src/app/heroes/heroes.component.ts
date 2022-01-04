@@ -1,5 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-import OpenAPI from '@tinkoff/invest-openapi-js-sdk';
 
 import { Hero } from '../hero';
 import { HeroService } from '../hero.service';

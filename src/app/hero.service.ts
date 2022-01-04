@@ -7,6 +7,8 @@ import { catchError, map, tap } from 'rxjs/operators';
 import { Hero } from './hero';
 import { MessageService } from './message.service';
 
+import OpenAPI from '@tinkoff/invest-openapi-js-sdk';
+
 @Injectable({ providedIn: 'root' })
 export class HeroService {
   private heroesUrl = 'api/heroes'; // URL to web api
