@@ -63,10 +63,6 @@ export class HeroService {
 
   /* GET heroes whose name contains search term */
   searchHeroes(term: string): Promise<any> {
-    if (!term.trim()) {
-      // if not search term, return empty hero array.
-      return of([]);
-    }
     return api.searchOne({ ticker: term });
     // return this.http.get<Hero[]>(`${this.heroesUrl}/?name=${term}`).pipe(
     //   tap((x) =>
