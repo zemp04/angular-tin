@@ -9,7 +9,8 @@ import { MessageService } from './message.service';
 
 import OpenAPI from '@tinkoff/invest-openapi-js-sdk';
 
-const apiURL = 'https://api-invest.tinkoff.ru/openapi/sandbox'; // Для Production-окружения будет https://api-invest.tinkoff.ru/openapi
+const apiURL = 'https://api-invest.tinkoff.ru/openapi/sandbox';
+// Для Production-окружения будет https://api-invest.tinkoff.ru/openapi
 const socketURL = 'wss://api-invest.tinkoff.ru/openapi/md/v1/md-openapi/ws';
 const secretToken = 'xxx'; // токен для сандбокса
 const api = new OpenAPI({ apiURL, secretToken, socketURL });
@@ -21,7 +22,6 @@ export class HeroService {
   httpOptions = {
     headers: new HttpHeaders({
       'Content-Type': 'application/json',
-      Authorization: 'Bearer  Test',
     }),
   };
 
@@ -53,17 +53,18 @@ export class HeroService {
   }
 
   /** GET hero by id. Will 404 if id not found */
-  getHero(id: number): Observable<Hero> {
-    const url = `${this.heroesUrl}/${id}`;
-    return this.http.get<Hero>(url).pipe(
-      tap((_) => this.log(`fetched hero id=${id}`)),
-      catchError(this.handleError<Hero>(`getHero id=${id}`))
-    );
+  getHero(fig: string): Promise<any> {
+    return api.search({ figi: fig });
+    // const url = `${this.heroesUrl}/${id}`;
+    // return this.http.get<Hero>(url).pipe(
+    //   tap((_) => this.log(`fetched hero id=${id}`)),
+    //   catchError(this.handleError<Hero>(`getHero id=${id}`))
+    // );
   }
 
   /* GET heroes whose name contains search term */
   searchHeroes(term: string): Promise<any> {
-    return api.searchOne({ ticker: term });
+    return api.search({ ticker: term });
     // return this.http.get<Hero[]>(`${this.heroesUrl}/?name=${term}`).pipe(
     //   tap((x) =>
     //     x.length
