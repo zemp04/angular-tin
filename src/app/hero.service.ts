@@ -33,7 +33,7 @@ export class HeroService {
 
   /** GET heroes from the server */
   getHeroes(): Promise<any> {
-    return api.currencies();
+    return api.stocks();
     // return this.http.get<Hero[]>(this.heroesUrl).pipe(
     //   tap((_) => this.log('fetched heroes')),
     //   catchError(this.handleError<Hero[]>('getHeroes', []))

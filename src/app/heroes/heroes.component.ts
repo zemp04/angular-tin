@@ -10,7 +10,7 @@ import { MarketInstrumentList } from '@tinkoff/invest-openapi-js-sdk';
   styleUrls: ['./heroes.component.css'],
 })
 export class HeroesComponent implements OnInit {
-  heroes: MarketInstrumentList[] = [];
+  stocks: MarketInstrumentList[] = [];
 
   constructor(private heroService: HeroService) {}
 
@@ -19,7 +19,7 @@ export class HeroesComponent implements OnInit {
   }
 
   getHeroes(): void {
-    this.heroService.getHeroes().then((heroes) => (this.heroes = heroes));
+    this.heroService.getHeroes().then((st) => (this.stocks = st));
   }
 
   add(name: string): void {
