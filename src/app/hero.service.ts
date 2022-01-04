@@ -39,22 +39,6 @@ export class HeroService {
     // );
   }
 
-  /** GET heroes from the server */
-  getPrices(): Observable<Hero[]> {
-    return this.http.get<Hero[]>(this.heroesUrl).pipe(
-      tap((_) => this.log('fetched heroes')),
-      catchError(this.handleError<Hero[]>('getHeroes', []))
-    );
-  }
-
-  /** GET heroes from the server */
-  getPrice(figi: string): Observable<Hero[]> {
-    return this.http.get<Hero[]>(this.heroesUrl).pipe(
-      tap((_) => this.log('fetched heroes')),
-      catchError(this.handleError<Hero[]>('getHeroes', []))
-    );
-  }
-
   /** GET hero by id. Return `undefined` when id not found */
   getHeroNo404<Data>(id: number): Observable<Hero> {
     const url = `${this.heroesUrl}/?id=${id}`;
@@ -78,19 +62,20 @@ export class HeroService {
   }
 
   /* GET heroes whose name contains search term */
-  searchHeroes(term: string): Observable<Hero[]> {
+  searchHeroes(term: string): Promise<any> {
     if (!term.trim()) {
       // if not search term, return empty hero array.
       return of([]);
     }
-    return this.http.get<Hero[]>(`${this.heroesUrl}/?name=${term}`).pipe(
-      tap((x) =>
-        x.length
-          ? this.log(`found heroes matching "${term}"`)
-          : this.log(`no heroes matching "${term}"`)
-      ),
-      catchError(this.handleError<Hero[]>('searchHeroes', []))
-    );
+    return api.searchOne({ ticker: term });
+    // return this.http.get<Hero[]>(`${this.heroesUrl}/?name=${term}`).pipe(
+    //   tap((x) =>
+    //     x.length
+    //       ? this.log(`found heroes matching "${term}"`)
+    //       : this.log(`no heroes matching "${term}"`)
+    //   ),
+    //   catchError(this.handleError<Hero[]>('searchHeroes', []))
+    // );
   }
 
   //////// Save methods //////////
