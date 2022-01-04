@@ -1,0 +1,37 @@
+<h2>My Tickers</h2>
+
+<div>
+  <label for="new-hero">Ticker name: </label>
+  <input id="new-hero" #heroName />
+
+  <!-- (click) passes input value to add() and then clears the input -->
+  <button class="add-button" (click)="add(heroName.value); heroName.value = ''">
+    Add ticker
+  </button>
+</div>
+
+<ul class="heroes">
+  <li *ngFor="let hero of heroes">
+    <a routerLink="/detail/{{ hero.id }}">
+      <img
+        class="InvestLogo__image_EAY2r"
+        src="https://invest-brands.cdn-tinkoff.ru/{{ hero.isin }}x160.png"
+      />
+      {{ hero.figi }}
+
+      <span class="Money-module__money_UwC2N"
+        >{{ hero.price.units }}.{{ hero.price.nano }}
+        <span>{{ hero.currency }}</span>
+      </span>
+    </a>
+    <button class="delete" title="delete Ticker" (click)="delete(hero)">
+      x
+    </button>
+  </li>
+</ul>
+
+<!-- 
+Copyright Google LLC. All Rights Reserved.
+Use of this source code is governed by an MIT-style license that
+can be found in the LICENSE file at https://angular.io/license
+-->
