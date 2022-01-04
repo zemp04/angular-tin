@@ -1,6 +1,6 @@
 export const environment = {
   production: true,
-  url: 'invest-public-api.tinkoff.ru:443',
+  url: 'https://api-invest.tinkoff.ru/openapi',
 };
 
 /*

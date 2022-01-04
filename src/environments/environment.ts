@@ -3,7 +3,8 @@
 // The list of file replacements can be found in `angular.json`.
 
 export const environment = {
-  production: false
+  production: false,
+  url: 'https://api-invest.tinkoff.ru/openapi/sandbox',
 };
 
 /*
@@ -14,7 +15,6 @@ export const environment = {
  * on performance if an error is thrown.
  */
 // import 'zone.js/plugins/zone-error';  // Included with Angular CLI.
-
 
 /*
 Copyright Google LLC. All Rights Reserved.

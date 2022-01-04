@@ -8,8 +8,9 @@ import { Hero } from './hero';
 import { MessageService } from './message.service';
 
 import OpenAPI from '@tinkoff/invest-openapi-js-sdk';
+import { environment } from './../environments/environment';
 
-const apiURL = 'https://api-invest.tinkoff.ru/openapi/sandbox';
+const apiURL = environment.url;
 // Для Production-окружения будет https://api-invest.tinkoff.ru/openapi
 const socketURL = 'wss://api-invest.tinkoff.ru/openapi/md/v1/md-openapi/ws';
 const secretToken = 'xxx'; // токен для сандбокса
