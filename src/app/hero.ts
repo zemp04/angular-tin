@@ -1,9 +1,9 @@
 export interface Hero {
-  id: number;
   figi: string; //"BBG000BC7VW9"
   ticker: string; //"MYRG",
   class_code: string; //"SPBXM",
   isin: string; //"US55405W1045",
+  currency: string;
 }
 
 /*
