@@ -9,6 +9,11 @@ import { MessageService } from './message.service';
 
 import OpenAPI from '@tinkoff/invest-openapi-js-sdk';
 
+const apiURL = 'https://api-invest.tinkoff.ru/openapi/sandbox'; // Для Production-окружения будет https://api-invest.tinkoff.ru/openapi
+const socketURL = 'wss://api-invest.tinkoff.ru/openapi/md/v1/md-openapi/ws';
+const secretToken = 'xxx'; // токен для сандбокса
+const api = new OpenAPI({ apiURL, secretToken, socketURL });
+
 @Injectable({ providedIn: 'root' })
 export class HeroService {
   private heroesUrl = 'api/heroes'; // URL to web api
@@ -26,11 +31,12 @@ export class HeroService {
   ) {}
 
   /** GET heroes from the server */
-  getHeroes(): Observable<Hero[]> {
-    return this.http.get<Hero[]>(this.heroesUrl).pipe(
-      tap((_) => this.log('fetched heroes')),
-      catchError(this.handleError<Hero[]>('getHeroes', []))
-    );
+  getHeroes(): Promise<any> {
+    return api.currencies();
+    // return this.http.get<Hero[]>(this.heroesUrl).pipe(
+    //   tap((_) => this.log('fetched heroes')),
+    //   catchError(this.handleError<Hero[]>('getHeroes', []))
+    // );
   }
 
   /** GET heroes from the server */
