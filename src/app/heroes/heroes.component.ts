@@ -2,7 +2,10 @@ import { Component, OnInit } from '@angular/core';
 
 import { Hero } from '../hero';
 import { HeroService } from '../hero.service';
-import { MarketInstrumentList } from '@tinkoff/invest-openapi-js-sdk';
+import {
+  MarketInstrumentList,
+  MarketInstrument,
+} from '@tinkoff/invest-openapi-js-sdk';
 
 @Component({
   selector: 'app-heroes',
@@ -13,7 +16,7 @@ export class HeroesComponent implements OnInit {
   stocks: MarketInstrumentList;
 
   constructor(private heroService: HeroService) {
-    this.stocks = new MarketInstrumentList();
+    this.stocks = {} as MarketInstrumentList;
   }
 
   ngOnInit(): void {

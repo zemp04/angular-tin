@@ -33,9 +33,9 @@ export class HeroDetailComponent implements OnInit {
   }
 
   orders(): void {
-    if (this.hero) {
-      this.heroService.updateHero(this.hero).subscribe(() => this.goBack());
-    }
+    // if (this.hero) {
+    //   this.heroService.updateHero(this.hero).subscribe(() => this.goBack());
+    // }
   }
 }
 
