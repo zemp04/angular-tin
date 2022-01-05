@@ -54,7 +54,7 @@ export class HeroService {
   }
 
   /** GET hero by id. Will 404 if id not found */
-  getHero(fig: string): Promise<any> {
+  getHero(fig: anying): Promise<any> {
     return api.search({ figi: fig });
     // const url = `${this.heroesUrl}/${id}`;
     // return this.http.get<Hero>(url).pipe(

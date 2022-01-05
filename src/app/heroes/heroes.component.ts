@@ -10,9 +10,11 @@ import { MarketInstrumentList } from '@tinkoff/invest-openapi-js-sdk';
   styleUrls: ['./heroes.component.css'],
 })
 export class HeroesComponent implements OnInit {
-  stocks: MarketInstrumentList[] = [];
+  stocks: MarketInstrumentList;
 
-  constructor(private heroService: HeroService) {}
+  constructor(private heroService: HeroService) {
+    this.stocks = new MarketInstrumentList();
+  }
 
   ngOnInit(): void {
     this.getHeroes();
