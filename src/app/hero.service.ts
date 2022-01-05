@@ -7,7 +7,10 @@ import { catchError, map, tap } from 'rxjs/operators';
 import { Hero } from './hero';
 import { MessageService } from './message.service';
 
-import OpenAPI from '@tinkoff/invest-openapi-js-sdk';
+import OpenAPI, {
+  MarketInstrumentList,
+  MarketInstrument,
+} from '@tinkoff/invest-openapi-js-sdk';
 import { environment } from './../environments/environment';
 
 const apiURL = environment.url;
