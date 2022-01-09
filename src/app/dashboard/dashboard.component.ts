@@ -1,6 +1,9 @@
 import { Component, OnInit } from '@angular/core';
-import { Hero } from '../hero';
 import { HeroService } from '../hero.service';
+import {
+  MarketInstrumentList,
+  MarketInstrument,
+} from '@tinkoff/invest-openapi-js-sdk';
 
 @Component({
   selector: 'app-dashboard',
@@ -8,8 +11,8 @@ import { HeroService } from '../hero.service';
   styleUrls: ['./dashboard.component.css'],
 })
 export class DashboardComponent implements OnInit {
-  heroes: Hero[] = [];
-  alltypes: string[] = ['Bounds', 'ETF', 'Shares', 'Curreny', 'Orders'];
+  mis: MarketInstrument[] = [];
+  alltypes: string[] = ['Bounds', 'ETF', 'Shares', 'Currency', 'Orders'];
 
   constructor(private heroService: HeroService) {}
 
@@ -20,7 +23,7 @@ export class DashboardComponent implements OnInit {
   getHeroes(): void {
     this.heroService
       .getHeroes()
-      .then((heroes) => (this.heroes = heroes.slice(1, 5)));
+      .then((heroes) => (this.mis = heroes.slice(1, 5)));
   }
 }
 
