@@ -1,11 +1,12 @@
 import { Component, OnInit } from '@angular/core';
 
-import { Hero } from '../hero';
 import { HeroService } from '../hero.service';
+import { MI } from '../mock-stocks';
 import {
   MarketInstrumentList,
   MarketInstrument,
 } from '@tinkoff/invest-openapi-js-sdk';
+
 
 @Component({
   selector: 'app-heroes',
@@ -14,9 +15,13 @@ import {
 })
 export class HeroesComponent implements OnInit {
   stocks: MarketInstrumentList;
+  myStorage: any;
+  private favorites: MarketInstrument[];
 
   constructor(private heroService: HeroService) {
     this.stocks = {} as MarketInstrumentList;
+    this.myStorage = window.localStorage;
+    this.favorites = this.heroService.getFav();
   }
 
   ngOnInit(): void {
@@ -24,22 +29,24 @@ export class HeroesComponent implements OnInit {
   }
 
   getHeroes(): void {
-    this.heroService.getHeroes().then((st) => (this.stocks = st));
+    this.stocks.instruments = MI;
+    // this.stocks.instruments = this.heroService.getFav();    
   }
 
-  add(name: string): void {
-    name = name.trim();
-    if (!name) {
+  add(mi: string): void {
+    if (!mi) {
       return;
     }
-    // this.heroService.addHero({ name } as Hero).then((hero) => {
-    //   this.heroes.push(hero);
-    // });
+    this.heroService.getStock(mi).then((st) => ( this.favorites.push(st) ));    
+    // save it
+    this.heroService.saveFav(this.favorites);
   }
 
-  delete(name: string): void {
-    //  this.heroes = this.heroes.filter((h) => h !== hero);
-    //  this.heroService.deleteHero(hero.id).subscribe();
+  delete(figi: string): void {
+    // delete item
+    this.favorites = this.favorites.filter((h) => h.figi !== figi);
+    // save it
+    this.heroService.saveFav(this.favorites);
   }
 }
 

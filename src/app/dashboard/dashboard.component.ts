@@ -22,7 +22,7 @@ export class DashboardComponent implements OnInit {
 
   getHeroes(): void {
     this.heroService
-      .getHeroes()
+      .getStocks()
       .then((heroes) => (this.mis = heroes.slice(1, 5)));
   }
 }

@@ -1,9 +1,9 @@
-<div *ngIf="hero">
-  <h2>{{ hero.ticker | uppercase }} Details</h2>
-  <div><span>id: </span>{{ hero.figi }}</div>
+<div *ngIf="mi">
+  <h2>{{ (mi? mi.ticker: null) | uppercase }} Details</h2>
+  <div><span>figi: </span>{{ (mi? mi.figi: null) }}</div>
   <div>
     <label for="hero-name">Tiker name: </label>
-    <input id="hero-name" [(ngModel)]="hero.figi" placeholder="Hero name" />
+    <input id="hero-name" [(ngModel)]="mi.figi" placeholder="Ticker name" />
   </div>
   <button (click)="goBack()">go back</button>
   <button (click)="orders()">Get orders</button>

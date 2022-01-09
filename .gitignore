@@ -1,0 +1,9 @@
+node_modules
+.angular
+dist
+dep/@tinkoff/invest-openapi-js-sdk/CHANGELOG.md
+dep/@tinkoff/invest-openapi-js-sdk/package.jsonbak
+run.bat
+build.bat
+dep/@tinkoff/invest-openapi-js-sdk/README.md
+dep/@tinkoff/invest-openapi-js-sdk/LICENSE

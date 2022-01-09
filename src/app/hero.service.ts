@@ -4,13 +4,13 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable, of } from 'rxjs';
 import { catchError, map, tap } from 'rxjs/operators';
 
-import { Hero } from './hero';
 import { MessageService } from './message.service';
 
 import OpenAPI, {
   MarketInstrumentList,
   MarketInstrument,
 } from '@tinkoff/invest-openapi-js-sdk';
+
 import { environment } from './../environments/environment';
 
 const apiURL = environment.url;
@@ -34,31 +34,40 @@ export class HeroService {
     private messageService: MessageService
   ) {}
 
-  /** GET heroes from the server */
-  getHeroes(): Promise<any> {
+  /** GET stocks from the server */
+  getStocks(): Promise<any> {
     return api.stocks();
-    // return this.http.get<Hero[]>(this.heroesUrl).pipe(
-    //   tap((_) => this.log('fetched heroes')),
-    //   catchError(this.handleError<Hero[]>('getHeroes', []))
-    // );
+  }
+  /** GET etf from the server */
+  getETF(): Promise<any> {
+    return api.etfs();
+  }
+  /** GET Bounds from the server */
+  getBounds(): Promise<any> {
+    return api.bonds();
+  }
+
+  /** GET Currencies from the server */
+  getCurrencies(): Promise<any> {
+    return api.currencies();
   }
 
   /** GET hero by id. Return `undefined` when id not found */
-  getHeroNo404<Data>(id: number): Observable<Hero> {
-    const url = `${this.heroesUrl}/?id=${id}`;
-    return this.http.get<Hero[]>(url).pipe(
-      map((heroes) => heroes[0]), // returns a {0|1} element array
-      tap((h) => {
-        const outcome = h ? `fetched` : `did not find`;
-        this.log(`${outcome} hero id=${id}`);
-      }),
-      catchError(this.handleError<Hero>(`getHero id=${id}`))
-    );
-  }
+  // getHeroNo404<Data>(id: number): Observable<Hero> {
+  //   const url = `${this.heroesUrl}/?id=${id}`;
+  //   return this.http.get<Hero[]>(url).pipe(
+  //     map((heroes) => heroes[0]), // returns a {0|1} element array
+  //     tap((h) => {
+  //       const outcome = h ? `fetched` : `did not find`;
+  //       this.log(`${outcome} hero id=${id}`);
+  //     }),
+  //     catchError(this.handleError<Hero>(`getHero id=${id}`))
+  //   );
+  // }
 
   /** GET hero by id. Will 404 if id not found */
-  getHero(fig: any): Promise<any> {
-    return api.search({ figi: fig });
+  getStock(fig: any): Promise<any> {
+    return api.searchOne({ figi: fig });
     // const url = `${this.heroesUrl}/${id}`;
     // return this.http.get<Hero>(url).pipe(
     //   tap((_) => this.log(`fetched hero id=${id}`)),
@@ -80,26 +89,29 @@ export class HeroService {
   }
 
   //////// Save methods //////////
-
-  /** POST: add a new hero to the server */
-  addHero(figi: string): void {
-    // return this.http.post<Hero>(this.heroesUrl, hero, this.httpOptions).pipe(
-    //   tap((newHero: Hero) => this.log(`added hero w/ id=${newHero.id}`)),
-    //   catchError(this.handleError<Hero>('addHero'))
-    // );
+  saveFav(favorites: MarketInstrument[]): void {
+    localStorage.setItem("favorites", JSON.stringify(favorites));
   }
 
-  /** DELETE: delete the hero from the server */
-  deleteHero(id: number): void {
+  getFav(): MarketInstrument[] {
+    try {
+      let str = localStorage.getItem("favorites");
+      if (str === null) return [];
+      return JSON.parse(str);
+    } catch (e) {
+      console.error('Error getting favorites from localStorage', e);
+      return [];
+    }
     // const url = `${this.heroesUrl}/${id}`;
     // return this.http.delete<Hero>(url, this.httpOptions).pipe(
     //   tap((_) => this.log(`deleted hero id=${id}`)),
     //   catchError(this.handleError<Hero>('deleteHero'))
     // );
+    return [];
   }
-
+  
   /** PUT: update the hero on the server */
-  updateHero(hero: Hero): void {
+  updateStock(stock: MarketInstrument): void {
     // return this.http.put(this.heroesUrl, hero, this.httpOptions).pipe(
     //   tap((_) => this.log(`updated hero id=${hero.id}`)),
     //   catchError(this.handleError<any>('updateHero'))

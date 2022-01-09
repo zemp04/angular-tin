@@ -1,0 +1,1 @@
+npm link dep\@tinkoff\invest-openapi-js-sdk

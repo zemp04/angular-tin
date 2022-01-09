@@ -1,8 +1,12 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { Location } from '@angular/common';
+import {
+  MarketInstrumentList,
+  MarketInstrument,
+} from '@tinkoff/invest-openapi-js-sdk';
 
-import { Hero } from '../hero';
+
 import { HeroService } from '../hero.service';
 
 @Component({
@@ -11,21 +15,23 @@ import { HeroService } from '../hero.service';
   styleUrls: ['./hero-detail.component.css'],
 })
 export class HeroDetailComponent implements OnInit {
-  hero: Hero | undefined;
+  mi: MarketInstrument | null;
 
   constructor(
     private route: ActivatedRoute,
     private heroService: HeroService,
     private location: Location
-  ) {}
-
-  ngOnInit(): void {
-    this.getHero();
+  ) {
+  this.mi = null;
   }
 
-  getHero(): void {
+  ngOnInit(): void {
+    this.getItem();
+  }
+
+  getItem(): void {
     const id = this.route.snapshot.paramMap.get('id');
-    this.heroService.getHero(id).then((hero) => (this.hero = hero));
+    this.heroService.getStock(id).then((item) => (this.mi = item));
   }
 
   goBack(): void {
@@ -34,7 +40,7 @@ export class HeroDetailComponent implements OnInit {
 
   orders(): void {
     // if (this.hero) {
-    //   this.heroService.updateHero(this.hero).subscribe(() => this.goBack());
+    //   this.heroService.updateHero(this.mi).subscribe(() => this.goBack());
     // }
   }
 }

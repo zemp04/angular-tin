@@ -3,7 +3,7 @@
   margin: 0 0 2em 0;
   list-style-type: none;
   padding: 0;
-  width: 15em;
+  
 }
 
 input {
@@ -32,7 +32,7 @@ input {
   height: 1.6em;
   border-radius: 4px;
   display: block;
-  width: 100%;
+  
 }
 
 .heroes a:hover {
@@ -73,13 +73,14 @@ input {
   background-color: #42545C;
 }
 
+
 button.delete {
   position: absolute;
-  left: 210px;
-  top: 5px;
+  left: 95%;
+  top: -30%;
   background-color: white;
   color:  #525252;
-  font-size: 1.1rem;
+  font-size: wwdaw1.1rem;
   padding: 1px 10px 3px 10px;
 }
 
@@ -88,7 +89,61 @@ button.delete:hover {
   color: white;
 }
 
+.InvestLogo {
+  height: var(--size-s);
+  --size-xxxl: 256px;
+  --size-xxl: 144px;
+  --size-xl: 96px;
+  --size-l: 64px;
+  --size-m: 48px;
+  --size-s: 32px;
+  --size-xs: 24px;
+  border-radius: 50%;
+  overflow: hidden;
+  position: relative;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+}
 
+.row {
+  display: flex;
+}
+
+.TableL {
+  padding-right: 0;
+  width: 75%; 
+}
+
+.TableR {
+  padding-left: 0;
+  width: 25%;
+}
+
+.Text-module {
+  flex: 1 1 auto;
+  padding-bottom: 16px;
+  padding-top: 16px;
+}
+
+.Money-module{
+  display: inline-block;
+  text-decoration: inherit;
+  white-space: nowrap;
+  text-align: right;
+  flex-shrink: 0;
+
+}
+
+.NameColumn {
+  display: block;
+  max-height: 37px;
+  overflow: hidden;
+  position: relative;
+  /* text-overflow: ellipsis; */
+  white-space: nowrap;
+}
 /*
 Copyright Google LLC. All Rights Reserved.
 Use of this source code is governed by an MIT-style license that

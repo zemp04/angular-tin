@@ -3,9 +3,9 @@
   <input #searchBox id="search-box" (input)="search(searchBox.value)" />
 
   <ul class="search-result">
-    <li *ngFor="let hero of heroes$ | async">
-      <a routerLink="/detail/{{ hero.figi }}">
-        {{ hero.figi }}
+    <li *ngFor="let st of stocks.instruments">
+      <a routerLink="/detail/{{ st.figi }}">
+        {{ st.figi }}
       </a>
     </li>
   </ul>

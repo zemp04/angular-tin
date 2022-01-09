@@ -12,21 +12,37 @@
 
 <ul class="heroes">
   <li *ngFor="let stock of stocks.instruments">
+    <div class="row">
+
+    <div class="TableL">
     <a routerLink="/detail/{{ stock.figi }}">
       <img
-        class="InvestLogo__image_EAY2r"
+        class="InvestLogo"
         src="https://invest-brands.cdn-tinkoff.ru/{{
           stock.isin ? stock.isin : null
         }}x160.png"
       />
-      {{ stock.ticker }}
-      <span class="Money-module__money_UwC2N">
-        <span>{{ stock.currency ? stock.currency : null }}</span>
-      </span>
+      {{ stock.ticker }}      
     </a>
+    </div>
+
+    <div class="TableR">
+    <div>  
+    <span class="Money-module">
+      0.0{{ stock.currency ? stock.currency : null }}
+    </span>
+  </div>  
+  <div>  
+    <span class="Percent-module">
+      5%
+    </span>
+
+  </div>  
     <button class="delete" title="delete Ticker" (click)="delete(stock.figi)">
       x
     </button>
+  </div>    
+  </div> 
   </li>
 </ul>
 
