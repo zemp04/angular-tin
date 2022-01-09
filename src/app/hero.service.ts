@@ -21,11 +21,13 @@ const api = new OpenAPI({ apiURL, secretToken, socketURL });
 
 @Injectable({ providedIn: 'root' })
 export class HeroService {
-  private heroesUrl = 'api/heroes'; // URL to web api
-
+  private heroesUrl = 'https://www.tinkoff.ru:443/api/invest-gw/social/v1/post/instrument'; // URL to web api
+  // private heroesUrl = 'https://www.google.com/search?';
   httpOptions = {
     headers: new HttpHeaders({
       'Content-Type': 'application/json',
+      
+      'Access-Control-Allow-Origin': '*' ,
     }),
   };
 
@@ -64,15 +66,17 @@ export class HeroService {
   //     catchError(this.handleError<Hero>(`getHero id=${id}`))
   //   );
   // }
-
-  /** GET hero by id. Will 404 if id not found */
+  
   getStock(fig: any): Promise<any> {
     return api.searchOne({ figi: fig });
-    // const url = `${this.heroesUrl}/${id}`;
-    // return this.http.get<Hero>(url).pipe(
-    //   tap((_) => this.log(`fetched hero id=${id}`)),
-    //   catchError(this.handleError<Hero>(`getHero id=${id}`))
-    // );
+  }
+
+  getStock2(id: any): Observable<any> {
+    const url = `${this.heroesUrl}/${id}`;
+    return this.http.get<any>(url, this.httpOptions).pipe(
+      tap((_) => this.log(`fetched stock id=${id}`)),
+      catchError(this.handleError<any>(`getStock id=${id}`))
+    );
   }
 
   /* GET heroes whose name contains search term */

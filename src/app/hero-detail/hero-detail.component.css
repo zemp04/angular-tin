@@ -25,6 +25,30 @@ button:disabled {
 }
 
 
+.InvestLogo {
+  height: var(--size-s);
+  --size-xxxl: 256px;
+  --size-xxl: 144px;
+  --size-xl: 96px;
+  --size-l: 64px;
+  --size-m: 48px;
+  --size-s: 32px;
+  --size-xs: 24px;
+  border-radius: 50%;
+  overflow: hidden;
+  position: relative;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+}
+
+.SecurityHeader{
+  display: flex;
+  font-size: inherit;
+  font-weight: inherit;
+  margin-bottom: 40px;
+}
 /*
 Copyright Google LLC. All Rights Reserved.
 Use of this source code is governed by an MIT-style license that
